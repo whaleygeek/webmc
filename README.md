@@ -1,4 +1,3 @@
-# webmc
 Web based Minecraft programming
 ===============================
 
@@ -38,9 +37,9 @@ inside a running Minecraft game. With it, at my demo, I showed building a Minecr
 The (minimal) API at the moment is this:
 
 on your web page, put this at the top:
-<script src="MinecraftBuilder.js"></script>
+&lt;script src="MinecraftBuilder.js"&gt;&lt;/script&gt;
 
-Somewhere in side a <script> tag, write some code
+Somewhere in side a &lt;script&gt; tag, write some code
 
 function buildSomething()
 {
@@ -53,7 +52,7 @@ function buildSomething()
 
 Somewhere on a form, add a button, and call your code
 
-<input type="button" value="build" onClick="buildSomething()">
+&lt;input type="button" value="build" onClick="buildSomething()"&gt;
 
 On your Raspberry Pi (or your PC or mac) run the following script (Python 2 only tested at present)
 making sure that Minecraft is running (if on PC/Mac, make sure your server and RaspberryJuice are
