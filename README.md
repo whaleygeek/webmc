@@ -134,8 +134,11 @@ TODO list
 =========
 
 * upload the code to github!
+* make the server address configurable
 * write a user guide for what we have working today
-* replace my test web server with a more robust one, based on the standard python libraries
+* replace my test web server with a more robust one, based on the standard python libraries,
+  which will probably also make it multi threaded (and able to accept multiple commands at a time
+  from different computers on a network - that might be a bad thing!)
 * add setBlocks()
 * add getTilePos()
 * add setTilePos()
@@ -145,6 +148,15 @@ TODO list
 * introduce server variables, so it's possible to do things like object teleporters with
   getBlocks() and setBlocks()
 * lots of other stuff
+
+NOTES
+=====
+
+* The server address is hard-coded at the moment to localhost:8080, this is inside the MinecraftBuilder.js
+file, but it will soon be a parameter to Builder() so that you can run the web page on one computer, and
+the webmcpi.py and Minecraft game on a different computer. The webmcpi.py runs a tiny web server that
+listens on port 8080 - this is a single threaded server, so it can only accept one connection at a time.
+
 
 David Whale
 @whaleygeek
