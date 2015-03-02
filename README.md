@@ -36,18 +36,36 @@ inside a running Minecraft game. With it, at my demo, I showed building a Minecr
 
 The (minimal) API at the moment is this:
 
-on your web page, put this at the top:
+mc = Builder()
+
+mc.postToChat("hello")
+
+mc.setBlock(x,y,z, blockId)
+
+mc.setAllBlocks(x1,y1,z1, x2,y2,z2, blockId)
+
+mc.doit()
+
+
+On your web page, put this at the top:
 &lt;script src="MinecraftBuilder.js"&gt;&lt;/script&gt;
 
 Somewhere in side a &lt;script&gt; tag, write some code
 
 function buildSomething()
+
 {
+
   mc = Builder()
+
   mc.postToChat("hello")
+
   mc.setBlock(0,0,0, mc.STONE)
-  mc.setAlLBlocks(0,0,0, 10, 10, 10, block.MELON)
+
+  mc.setAllBlocks(0,0,0, 10, 10, 10, block.MELON)
+
   mc.doit()
+
 }
 
 Somewhere on a form, add a button, and call your code
