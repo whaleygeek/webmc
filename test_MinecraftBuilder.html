@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+<script src="minecraft.js"></script>
+
+<script>
+function loadprog(name)
+{
+  prog = document.getElementById("program")
+  myprog = document.getElementById(name)
+
+  console.log(myprog)
+
+  prog.value = myprog.innerText
+}
+
+function runprog()
+{
+  eval(document.getElementById('program').value)
+}
+</script>
+
+</head>
+
+<body>
+<H1>Minecraft web tester</H1>
+
+<textarea rows=10 cols=80 id="program">
+</textarea>
+
+<form>
+  <table>
+    <tr>
+     <td><input type="text" id="size" value="20">
+     <td>
+     <select id="blockId">
+       <option value="mc.COBBLESTONE" selected>COBBLESTONE</option>
+       <option value="mc.STONE">STONE</option>
+       <option value="mc.MELON">MELON</option>
+     </select>
+
+    <tr>
+      <td><input type="button" value="clear"
+        onClick="document.getElementById('program').value=''">
+
+      <td><input type="button" value="tower"
+        onClick="loadprog('tower')">
+
+      <td><input type="button" value="dice"
+        onClick="loadprog('dice')">
+
+      <td><input type="button" value="house"
+        onClick="loadprog('house')">
+
+
+    <tr>
+      <td><input type="button" value="build" 
+        onClick="runprog()">
+   </table>
+</form>
+
+
+<textarea rows=10 cols=80 readonly id="output">
+</textarea>
+
+
+<script id="house">
+function buildHouseAt(mc, x, y, z, size, wallBlockId)
+{
+  midx = x + size/2
+  midy = y + size/2  
+
+  // Build the outer shell of the house
+  mc.setAllBlocks(x, y, z, x+size, y+size, z+size, wallBlockId)
+
+  // Carve the insides out with AIR    
+  mc.setAllBlocks(x+1, y, z+1, x+size-2, y+size-1, z+size-2, mc.AIR)
+
+  // Carve out a space for the doorway
+  mc.setAllBlocks(midx-1, y, z, midx+1, y+3, z, mc.AIR)
+
+  // Carve out the left hand window
+  mc.setAllBlocks(x+3, y+size-3, z, midx-3, midy+3, z, mc.GLASS)
+
+  // Carve out the right hand window    
+  mc.setAllBlocks(midx+3, y+size-3, z, x+size-3, midy+3, z, mc.GLASS)
+
+  // Add a wooden roof  
+  mc.setAllBlocks(x, y+size, z, x+size, y+size, z+size, mc.WOOD)
+
+  // Add a woolen carpet, the colour is 14, which is red.
+  mc.setAllBlocks(x+1, y-1, z+1, x+size-2, y-1, z+size-2, mc.WOOL, 14)
+
+  mc.doit()
+}
+
+mc = new Builder()
+size = document.getElementById("size").value
+
+blockId = document.getElementById("blockId").value
+// must convert from a minecraft constant name, to it's value
+blockId = eval(blockId)
+
+
+//buildHouseAt(mc, 0,0,0, size, blockId)
+</script>
+
+
+<script id="tower">
+function buildTowerAt(mc, x, y, z, size)
+{
+  mc.setAllBlocks(x,y,z, x,y+size,z, mc.SAND)
+  mc.doit()
+}
+
+mc = new Builder()
+//buildTowerAt(mc, 0,0,0, 50)
+</script>
+
+
+<script id="dice">
+function buildDice(mc)
+{
+  x = 2
+  y = 2
+  z = 2
+  mc.setBlock(x,y,z,     mc.STONE)
+  mc.setBlock(x,y+2,z,   mc.STONE)
+  mc.setBlock(x,y+4,z,   mc.STONE)
+  mc.setBlock(x+2,y+2,z, mc.STONE)
+  mc.setBlock(x+4,y,z,   mc.STONE)
+  mc.setBlock(x+4,y+2,z, mc.STONE)
+  mc.setBlock(x+4,y+4,z, mc.STONE)
+
+  mc.doit()
+}
+
+mc = new Builder()
+//buildDice(mc)
+</script>
+
+
+</body>
+</html>
