@@ -34,7 +34,8 @@ with this you can write javascript code inside a web page, and get that code to 
 inside a running Minecraft game. With it, at my demo, I showed building a Minecraft dice, a tower of blocks
 50 blocks high, and some houses of different sizes.
 
-The (minimal) API at the moment is this:
+The (minimal) API
+=================
 
 mc = Builder()
 
@@ -47,13 +48,41 @@ mc.setAllBlocks(x1,y1,z1, x2,y2,z2, blockId)
 mc.doit()
 
 
+Using the out of the box demo
+=============================
+
+This has only been tested on my Mac at the moment using RaspberryJuice,
+which you can get a pre-rolled starter kit from
+http://www.wiley.com/go/adventuresinminecraft
+
+There's no reason why it won't work on the Raspberry Pi, but I haven't
+had a chance to test it yet.
+
+1) start minecraft and raspbery juice
+2) run the web server:
+   python webmcpi.py
+3) open a web browser on the same computer
+4) open the file "test_MinecraftBuilder.html"
+5) Press the HOUSE button
+6) scroll down in the text box and remove the // from the last line
+7) press the BUILD button
+8) now change the block type to MELON
+9) press the BUILD button again
+
+Be carefull with the SIZE parameter, if you build it too big, it
+will take a very long time to build! 20 or smaller is a good size
+for houses.
+
+
+Creating your own web pages
+===========================
+
 On your web page, put this at the top:
-&lt;script src="MinecraftBuilder.js"&gt;&lt;/script&gt;
+&lt;script src="minecraft.js"&gt;&lt;/script&gt;
 
 Somewhere in side a &lt;script&gt; tag, write some code
 
 function buildSomething()
-
 {
 
   mc = Builder()
@@ -76,7 +105,6 @@ On your Raspberry Pi (or your PC or mac) run the following script (Python 2 only
 making sure that Minecraft is running (if on PC/Mac, make sure your server and RaspberryJuice are
 also running).
 
-python webmcpi.py
 
 How does it work?
 =================
@@ -133,8 +161,8 @@ new features.
 TODO list
 =========
 
-* upload the code to github!
-* make the server address configurable
+* make the server address configurable so that the web page and the minecraft
+  game can run on different computers on the network
 * write a user guide for what we have working today
 * replace my test web server with a more robust one, based on the standard python libraries,
   which will probably also make it multi threaded (and able to accept multiple commands at a time
@@ -148,6 +176,10 @@ TODO list
 * introduce server variables, so it's possible to do things like object teleporters with
   getBlocks() and setBlocks()
 * lots of other stuff
+  e.g. object teleporters (cut, copy, paste)
+  write minecraftstuff inside javascript
+  better error handling at the javascript end
+  better error handling at the python end
 
 NOTES
 =====
