@@ -37,7 +37,7 @@ inside a running Minecraft game. With it, at my demo, I showed building a Minecr
 The (minimal) API
 =================
 
-mc = Builder()
+mc = new Builder()
 
 mc.postToChat("hello")
 
